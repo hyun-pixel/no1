@@ -727,7 +727,7 @@ h1,h2,h3,h4{text-wrap:balance}
           </ul>
         </div>
         <div class="fi d1">
-          <form class="form" id="lead-form" onsubmit="return submitForm(event)">
+          <form class="form" id="lead-form" action="https://formspree.io/f/xkolpngk" method="POST" onsubmit="return submitForm(event)">
             <div id="form-body">
               <h3>무료 진단·보장 점검</h3>
               <p class="fsub">아래 정보만 남기시면 이민호가 연락드립니다.</p>
@@ -842,11 +842,23 @@ estTrim.addEventListener('change',calcEst);
 calcEst();
 
 // FORM demo
-function submitForm(e){
+async function submitForm(e){
   e.preventDefault();
   const f=e.target,name=f.name.value.trim(),phone=f.phone.value.trim();
   if(!name||!phone){alert('이름과 연락처를 입력해주세요.');return false}
-  document.getElementById('form-body').innerHTML='<div class="form-done"><div class="di"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>신청이 접수되었습니다</h3><p>'+name+'님, 보험료 점검 신청이 접수되었습니다.<br>이민호가 곧 연락드립니다.</p></div>';
+  const btn=f.querySelector('button[type="submit"]');
+  const original=btn.innerHTML;
+  btn.disabled=true;
+  btn.textContent='전송 중입니다...';
+  try{
+    const res=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
+    if(!res.ok) throw new Error('Formspree submit failed');
+    document.getElementById('form-body').innerHTML='<div class="form-done"><div class="di"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>신청이 접수되었습니다</h3><p>'+name+'님, 보험료 점검 신청이 접수되었습니다.<br>이민호가 곧 연락드립니다.</p></div>';
+  }catch(err){
+    alert('전송 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    btn.disabled=false;
+    btn.innerHTML=original;
+  }
   return false;
 }
 </script>
