@@ -1,0 +1,855 @@
+<html lang="ko" style=""><head><base href="https://papacompany-studio.vercel.app/portfolio/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이민호의 보험료 줄이기 · 내 보험료를 더 가볍게</title>
+<meta name="description" content="내 보험료를 빠르게 점검하고 중복 보장, 불필요 특약, 갱신 부담을 줄이는 보험료 절감 상담 홈페이지입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#061313; --surface:#0C1F1F; --raised:#12302F; --raised-2:#193C3A;
+  --ink:#F4FBF9; --ink-2:#CFE4DF; --muted:#8BA8A1; --muted-2:#607D77;
+  --hair:rgba(255,255,255,.09); --hair-2:rgba(255,255,255,.055);
+  --red:#14B8A6; --red-bright:#5EEAD4; --red-deep:#0F766E; --red-tint:rgba(20,184,166,.15);
+  --steel:#78928C; --steel-2:#29423E;
+  --blue:rgba(245,158,11,.16); --blue-line:rgba(245,158,11,.34);
+  --r-sm:11px; --r:16px; --r-lg:24px; --r-xl:34px; --pill:999px;
+  --sh-sm:0 2px 10px rgba(0,0,0,.4);
+  --sh-md:0 22px 50px -18px rgba(0,0,0,.7);
+  --sh-lg:0 50px 110px -30px rgba(0,0,0,.85);
+  --sh-red:0 22px 56px -16px rgba(20,184,166,.38);
+  --max:1240px;
+  --e:cubic-bezier(.2,.7,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Pretendard',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;
+  word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+h1,h2,h3,h4{text-wrap:balance}
+.num,.spec{font-family:'Inter',sans-serif;font-feature-settings:"tnum";letter-spacing:-.02em}
+.eng{font-family:'Inter',sans-serif;letter-spacing:.01em}
+:focus-visible{outline:2px solid var(--red-bright);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+/* ===== type ===== */
+.kicker{display:inline-flex;align-items:center;gap:9px;font-family:'Inter';font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--red-bright)}
+.kicker::before{content:"";width:24px;height:1.5px;background:var(--red);border-radius:2px}
+.h2{font-size:clamp(30px,4.6vw,52px);font-weight:800;line-height:1.08;letter-spacing:-.035em;color:var(--ink)}
+.sub{font-size:clamp(16px,1.5vw,18px);color:var(--muted);line-height:1.75;max-width:580px}
+.accent{color:var(--red-bright)}
+
+/* ===== buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;font-size:16px;padding:16px 28px;border-radius:var(--pill);
+  transition:transform .22s var(--e),box-shadow .25s var(--e),background-color .2s,color .2s,border-color .2s;will-change:transform}
+.btn svg{width:18px;height:18px}
+.btn-pri{background:var(--red);color:#fff;box-shadow:var(--sh-red)}
+.btn-pri:hover{background:var(--red-bright);transform:translateY(-3px);box-shadow:0 30px 70px -16px rgba(20,184,166,.55)}
+.btn-pri:active{transform:translateY(-1px) scale(.99)}
+.btn-glass{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid var(--hair);backdrop-filter:blur(8px)}
+.btn-glass:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
+.btn-glass:active{transform:translateY(0)}
+.btn-ghost{background:var(--raised);color:var(--ink);border:1.5px solid var(--hair)}
+.btn-ghost:hover{border-color:var(--steel);transform:translateY(-2px)}
+.btn-ghost:active{transform:translateY(0)}
+.btn-lg{padding:19px 36px;font-size:17px}
+
+/* ===== fade ===== */
+.fi{opacity:0;transform:translateY(28px);transition:opacity .7s var(--e),transform .7s var(--e)}
+.fi.on{opacity:1;transform:none}
+.fi.d1{transition-delay:.08s}.fi.d2{transition-delay:.16s}.fi.d3{transition-delay:.24s}.fi.d4{transition-delay:.32s}
+
+/* ===== NAV ===== */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;transition:background-color .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.sc{background:rgba(8,9,12,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-color:var(--hair);box-shadow:0 6px 30px rgba(0,0,0,.5)}
+.nav-in{max-width:var(--max);margin:0 auto;padding:0 28px;height:74px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px;letter-spacing:-.02em;color:#fff}
+.logo-mk{width:36px;height:36px;border-radius:10px;background:linear-gradient(140deg,var(--red),var(--red-deep));display:grid;place-items:center;box-shadow:0 8px 22px -6px rgba(20,184,166,.5)}
+.logo-mk svg{width:21px;height:21px}
+.logo .eng{font-family:'Inter';font-weight:800}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-2);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-r{display:flex;align-items:center;gap:16px}
+.nav-phone{font-weight:700;font-size:15px;color:#fff;display:flex;align-items:center;gap:7px}
+.nav-phone .eng{font-family:'Inter'}
+.nav-phone svg{width:16px;height:16px;color:var(--red-bright)}
+.nav-r .btn{padding:11px 22px;font-size:14.5px}
+.burger{display:none;flex-direction:column;gap:5px;padding:8px}
+.burger span{width:25px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.mobnav{display:none;position:fixed;inset:74px 0 auto 0;background:var(--surface);border-bottom:1px solid var(--hair);z-index:99;padding:18px 28px 26px;box-shadow:var(--sh-md)}
+.mobnav.open{display:block}
+.mobnav a{display:block;padding:13px 0;font-weight:600;color:var(--ink);border-bottom:1px solid var(--hair-2)}
+.mobnav .btn{width:100%;margin-top:18px}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
+.hero-bg{position:absolute;inset:0;z-index:0;background:
+  radial-gradient(900px 600px at 78% 8%,var(--blue),transparent 60%),
+  radial-gradient(700px 600px at 8% 95%,rgba(20,184,166,.14),transparent 62%),
+  linear-gradient(180deg,#0A0C11,#08090C)}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(8,9,12,.55) 0%,rgba(8,9,12,.2) 32%,rgba(8,9,12,.65) 72%,#08090C 100%),
+  linear-gradient(90deg,rgba(8,9,12,.78),rgba(8,9,12,.15) 60%)}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:150px;padding-bottom:54px}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.06);border:1px solid var(--hair);backdrop-filter:blur(8px);padding:8px 16px 8px 12px;border-radius:var(--pill);font-size:13px;font-weight:600;color:var(--ink-2)}
+.hero-badge .pdot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(20,184,166,.2);animation:pulse 1.9s infinite}
+.hero-badge .dday{font-family:'Inter';font-weight:800;color:var(--red-bright)}
+.hero h1{font-size:clamp(38px,6.4vw,78px);font-weight:800;line-height:1.04;letter-spacing:-.045em;margin:24px 0 0;max-width:880px}
+.hero h1 .ln2{color:var(--ink)}
+.hero .sub{color:var(--ink-2);margin-top:22px;font-size:clamp(16px,1.7vw,19px);max-width:540px}
+.hero .sub b{color:#fff;font-weight:600}
+.hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.spec-strip{display:flex;gap:0;margin-top:42px;background:rgba(17,19,24,.55);border:1px solid var(--hair);border-radius:var(--r);backdrop-filter:blur(12px);overflow:hidden;max-width:760px;flex-wrap:wrap}
+.spec-strip .sp{flex:1;min-width:130px;padding:20px 24px;border-right:1px solid var(--hair-2)}
+.spec-strip .sp:last-child{border-right:none}
+.spec-strip .sp .v{font-family:'Inter';font-size:clamp(22px,3vw,30px);font-weight:800;color:#fff;line-height:1;letter-spacing:-.03em}
+.spec-strip .sp .v .u{font-size:.5em;color:var(--red-bright);font-weight:700;margin-left:3px}
+.spec-strip .sp .l{font-size:12.5px;color:var(--muted);margin-top:9px;font-weight:500}
+.scroll-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;color:var(--muted-2);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-family:'Inter';letter-spacing:.2em}
+.scroll-hint svg{width:18px;height:18px;animation:bob 1.8s var(--e) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ===== BENEFIT BAR ===== */
+.benefit{background:var(--surface);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.benefit-in{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.bn{padding:40px 32px;border-right:1px solid var(--hair-2);display:flex;flex-direction:column;gap:14px;transition:background-color .25s}
+.bn:last-child{border-right:none}
+.bn:hover{background:var(--raised)}
+.bn-ic{width:46px;height:46px;border-radius:13px;background:var(--red-tint);color:var(--red-bright);display:grid;place-items:center}
+.bn-ic svg{width:23px;height:23px}
+.bn h4{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.bn p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.bn-count .bc{font-family:'Inter';font-size:38px;font-weight:800;color:#fff;line-height:1;letter-spacing:-.03em}
+.bn-count .bc .u{font-size:.45em;color:var(--red-bright);margin-left:4px}
+
+/* ===== SECTION SHELL ===== */
+.sec{padding:120px 0}
+.sec-head{max-width:740px;margin-bottom:60px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head .h2{margin-top:18px}.sec-head .sub{margin-top:18px}
+.sec-head.center .sub{margin-left:auto;margin-right:auto}
+
+/* ===== LINEUP ===== */
+.line-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.mcard{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--e),box-shadow .35s,border-color .3s;
+  --tint:var(--red);--tint-glow:rgba(20,184,166,.28)}
+.mcard:hover{transform:translateY(-8px);box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px var(--tint);border-color:transparent}
+.mcard-img{position:relative;aspect-ratio:16/11;background:linear-gradient(155deg,var(--raised),#0C0E12);overflow:hidden}
+.mcard-img::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(420px 280px at 70% 18%,var(--tint-glow),transparent 60%);opacity:.7;transition:opacity .35s}
+.mcard:hover .mcard-img::before{opacity:1}
+.mcard-img img{position:relative;z-index:2;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--e),opacity .4s}
+.mcard:hover .mcard-img img{transform:scale(1.05)}
+.mcard-img .ph{position:absolute;inset:0;z-index:0;display:grid;place-items:center;color:rgba(255,255,255,.08)}
+.mcard-img .ph svg{width:120px;height:120px}
+.mcard-tag{position:absolute;top:16px;left:16px;z-index:3;font-family:'Inter';font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(8,9,12,.6);border:1px solid var(--hair);backdrop-filter:blur(8px);padding:6px 12px;border-radius:var(--pill)}
+.mcard-body{padding:26px;display:flex;flex-direction:column;flex:1}
+.mcard-name{font-family:'Inter';font-size:25px;font-weight:800;color:#fff;letter-spacing:-.02em;display:flex;align-items:baseline;gap:9px}
+.mcard-name .kr{font-family:'Pretendard';font-size:14px;font-weight:500;color:var(--muted)}
+.mcard-price{margin-top:14px;font-size:14px;color:var(--muted)}
+.mcard-price .pv{font-family:'Inter';font-size:26px;font-weight:800;color:var(--tint);letter-spacing:-.02em;display:inline-block;transition:color .25s}
+.mcard-price .pv .u{font-family:'Pretendard';font-size:15px;color:var(--ink-2);font-weight:600;margin-left:2px}
+.mspec{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 22px;padding:20px 0 0;border-top:1px solid var(--hair-2)}
+.mspec li{font-size:12.5px;color:var(--ink-2);background:var(--raised);border:1px solid var(--hair-2);padding:6px 11px;border-radius:var(--pill);display:flex;align-items:center;gap:6px}
+.mspec li .sv{font-family:'Inter';font-weight:700;color:#fff}
+.swatch-row{display:flex;align-items:center;gap:10px;margin-top:auto;padding-bottom:20px}
+.swatch-row .sl{font-size:12px;color:var(--muted-2);font-family:'Inter';letter-spacing:.05em;margin-right:2px}
+.swatch{width:26px;height:26px;border-radius:50%;border:2px solid var(--hair);cursor:pointer;position:relative;transition:transform .18s var(--e),border-color .2s;padding:0}
+.swatch:hover{transform:scale(1.15)}
+.swatch.on{border-color:#fff;box-shadow:0 0 0 2px var(--bg),0 0 0 4px currentColor}
+.swatch.on::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(8,9,12,.5)}
+.mcard .btn{width:100%}
+
+/* ===== PROMO ===== */
+.promo{position:relative}
+.promo-card{background:linear-gradient(150deg,#15171D,#0C0E12);border:1px solid var(--hair);border-radius:var(--r-xl);padding:56px;position:relative;overflow:hidden;box-shadow:var(--sh-lg)}
+.promo-card::before{content:"";position:absolute;top:-120px;right:-80px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(20,184,166,.2),transparent 62%)}
+.promo-card::after{content:"";position:absolute;bottom:-160px;left:-100px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,var(--blue),transparent 64%)}
+.promo-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:54px;align-items:center;position:relative;z-index:2}
+.promo-l .dchip{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:700;font-size:13px;padding:8px 15px;border-radius:var(--pill);box-shadow:var(--sh-red)}
+.promo-l .dchip .eng{font-family:'Inter';font-weight:800}
+.promo-l h2{color:#fff;margin-top:20px;font-size:clamp(28px,3.8vw,44px);font-weight:800;letter-spacing:-.035em;line-height:1.12}
+.promo-l p{color:var(--ink-2);margin-top:18px;font-size:16px;line-height:1.7;max-width:420px}
+.promo-l .magnet{margin-top:24px;display:flex;gap:13px;background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.28);border-radius:var(--r);padding:18px 20px;align-items:flex-start}
+.promo-l .magnet svg{width:24px;height:24px;color:var(--red-bright);flex-shrink:0;margin-top:1px}
+.promo-l .magnet p{margin:0;font-size:14.5px;color:var(--ink);line-height:1.6}
+.promo-l .magnet b{color:#fff;font-weight:700}
+.promo-cards{display:flex;flex-direction:column;gap:14px}
+.pc{display:flex;gap:18px;background:rgba(255,255,255,.04);border:1px solid var(--hair);border-radius:var(--r);padding:22px 24px;align-items:center;transition:transform .25s var(--e),background-color .25s,border-color .25s}
+.pc:hover{transform:translateX(8px);background:rgba(255,255,255,.07);border-color:var(--blue-line)}
+.pc-ic{width:50px;height:50px;border-radius:14px;background:var(--raised);border:1px solid var(--hair);color:var(--red-bright);display:grid;place-items:center;flex-shrink:0}
+.pc-ic svg{width:25px;height:25px}
+.pc h4{font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-.01em}
+.pc h4 .val{font-family:'Inter';color:var(--red-bright);margin-left:4px}
+.pc p{font-size:13.5px;color:var(--muted)}
+
+/* ===== ESTIMATOR ===== */
+.est{background:var(--surface);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.est-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.est-panel{background:linear-gradient(160deg,var(--raised),#0E1014);border:1px solid var(--hair);border-radius:var(--r-xl);padding:36px;box-shadow:var(--sh-md);position:relative;overflow:hidden}
+.est-panel::before{content:"";position:absolute;top:-80px;right:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--blue),transparent 62%)}
+.est-panel-h{position:relative;font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;margin-bottom:26px}
+.est-panel-h svg{width:21px;height:21px;color:var(--red-bright)}
+.efld{margin-bottom:18px;position:relative}
+.efld label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:9px;font-family:'Inter';letter-spacing:.04em;text-transform:uppercase}
+.efld select{width:100%;padding:15px 16px;border:1.5px solid var(--hair);border-radius:var(--r-sm);font-family:inherit;font-size:15px;font-weight:600;color:var(--ink);background:var(--surface);transition:border-color .2s,box-shadow .2s;cursor:pointer;
+  appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238A93A3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.efld select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(20,184,166,.16)}
+.eseg{display:flex;gap:8px;position:relative}
+.eseg button{flex:1;padding:13px;border-radius:var(--r-sm);border:1.5px solid var(--hair);background:var(--surface);font-size:14px;font-weight:600;color:var(--muted);transition:border-color .2s,color .2s,background-color .2s}
+.eseg button.on{background:var(--red-tint);border-color:var(--red);color:var(--red-bright);font-weight:700}
+.eseg button:hover:not(.on){border-color:var(--steel);color:var(--ink)}
+.eout{position:relative;margin-top:26px;background:linear-gradient(150deg,rgba(20,184,166,.14),rgba(255,59,48,.03));border:1px solid rgba(20,184,166,.28);border-radius:var(--r-lg);padding:26px}
+.eout .ot{font-size:12.5px;color:var(--muted);font-weight:600;font-family:'Inter';letter-spacing:.06em;text-transform:uppercase}
+.eout .orow{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px;gap:18px;flex-wrap:wrap}
+.eout .ob{flex:1;min-width:140px}
+.eout .ob .ol{font-size:13px;color:var(--ink-2);margin-bottom:6px}
+.eout .ob .ov{font-family:'Inter';font-size:clamp(26px,4vw,34px);font-weight:800;color:#fff;line-height:1;letter-spacing:-.02em}
+.eout .ob.hi .ov{color:var(--red-bright)}
+.eout .ob .ov small{font-size:16px;font-weight:600;color:var(--ink-2);margin-left:2px}
+.eout .enote{font-size:11.5px;color:var(--muted-2);margin-top:18px;text-align:center}
+.est-l h2{margin-top:16px}.est-l .sub{margin-top:16px}
+.est-feats{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.est-feats li{display:flex;gap:12px;font-size:15.5px;color:var(--ink-2);align-items:center}
+.est-feats li svg{width:21px;height:21px;color:var(--red-bright);flex-shrink:0}
+
+/* ===== MASTER ===== */
+.master{background:var(--bg)}
+.master-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center}
+.master-photo{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/5;background:linear-gradient(160deg,var(--steel-2),#0C0E12);box-shadow:var(--sh-lg);border:1px solid var(--hair)}
+.master-photo img{width:100%;height:100%;object-fit:cover}
+.master-photo .pf{position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.1)}
+.master-photo .pf svg{width:92px;height:92px}
+.master-tag{position:absolute;left:22px;right:22px;bottom:22px;background:rgba(17,19,24,.82);backdrop-filter:blur(14px);border:1px solid var(--hair);border-radius:var(--r);padding:18px 20px;z-index:2}
+.master-tag .nm{font-weight:800;color:#fff;font-size:18px}
+.master-tag .ro{font-size:13px;color:var(--red-bright);font-weight:600;margin-top:3px}
+.master-stats{display:flex;gap:34px;margin:30px 0;flex-wrap:wrap}
+.master-stats .ms .v{font-family:'Inter';font-size:clamp(28px,3.6vw,38px);font-weight:800;color:#fff;line-height:1;letter-spacing:-.03em}
+.master-stats .ms .v .u{font-size:.45em;color:var(--red-bright);margin-left:3px}
+.master-stats .ms .l{font-size:13px;color:var(--muted);margin-top:8px}
+.master-quote{background:var(--surface);border-left:3px solid var(--red);border-radius:0 var(--r) var(--r) 0;padding:22px 26px;font-size:16.5px;color:var(--ink);line-height:1.7;font-style:italic}
+.master-cred{list-style:none;margin:26px 0 0;display:flex;flex-direction:column;gap:13px}
+.master-cred li{display:flex;gap:13px;font-size:15px;color:var(--ink-2);align-items:center}
+.master-cred li svg{width:20px;height:20px;color:var(--red-bright);flex-shrink:0}
+
+/* ===== STEPS (test drive) ===== */
+.steps{background:var(--surface);border-top:1px solid var(--hair);position:relative;overflow:hidden}
+.steps::before{content:"";position:absolute;inset:0;background:radial-gradient(760px 480px at 84% 6%,var(--blue),transparent 60%)}
+.steps .wrap{position:relative;z-index:2}
+.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative}
+.stp{background:var(--raised);border:1px solid var(--hair);border-radius:var(--r-lg);padding:36px 30px;transition:transform .3s var(--e),background-color .25s,border-color .3s}
+.stp:hover{transform:translateY(-8px);border-color:var(--red);background:#1E2128}
+.stp .si{font-family:'Inter';font-size:52px;font-weight:800;color:rgba(255,255,255,.09);line-height:1;letter-spacing:-.03em}
+.stp .sic{width:54px;height:54px;border-radius:15px;background:var(--red-tint);color:var(--red-bright);display:grid;place-items:center;margin:18px 0}
+.stp .sic svg{width:26px;height:26px}
+.stp h3{font-size:20px;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:-.02em}
+.stp p{font-size:15px;color:var(--muted);line-height:1.65}
+
+/* ===== REVIEWS ===== */
+.rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.rv{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r-lg);padding:32px;box-shadow:var(--sh-sm);display:flex;flex-direction:column;transition:transform .3s var(--e),box-shadow .3s,border-color .3s}
+.rv:hover{transform:translateY(-6px);box-shadow:var(--sh-md);border-color:var(--steel-2)}
+.rv .stars{display:flex;gap:2px;color:var(--red);margin-bottom:18px}
+.rv .stars svg{width:18px;height:18px}
+.rv-txt{font-size:16px;color:var(--ink);line-height:1.75;flex:1}
+.rv-buy{display:inline-flex;align-self:flex-start;margin:18px 0;background:var(--red-tint);color:var(--red-bright);font-weight:700;font-size:13.5px;padding:7px 14px;border-radius:var(--pill)}
+.rv-u{display:flex;align-items:center;gap:13px;padding-top:18px;border-top:1px solid var(--hair-2)}
+.rv-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--steel),var(--steel-2));overflow:hidden;flex-shrink:0}
+.rv-av img{width:100%;height:100%;object-fit:cover}
+.rv-u .nm{font-weight:700;color:#fff;font-size:15px}.rv-u .me{font-size:13px;color:var(--muted)}
+
+/* ===== FAQ ===== */
+.faq-wrap{max-width:800px;margin:0 auto}
+.fq{background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);margin-bottom:13px;overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.fq.open{box-shadow:var(--sh-sm);border-color:var(--red)}
+.fq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 26px;text-align:left;font-weight:700;font-size:17px;color:var(--ink)}
+.fq-q .ico{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--raised);display:grid;place-items:center;transition:transform .3s,background-color .25s}
+.fq-q .ico svg{width:15px;height:15px;color:var(--ink)}
+.fq.open .ico{background:var(--red);transform:rotate(45deg)}.fq.open .ico svg{color:#fff}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--e)}
+.fq-a-in{padding:0 26px 26px;font-size:15px;color:var(--muted);line-height:1.75}
+
+/* ===== CTA / FORM ===== */
+.cta-card{background:linear-gradient(150deg,#15171D,#0B0D11);border:1px solid var(--hair);border-radius:var(--r-xl);padding:58px;position:relative;overflow:hidden;box-shadow:var(--sh-lg)}
+.cta-card::before{content:"";position:absolute;top:-100px;right:-70px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(20,184,166,.22),transparent 62%)}
+.cta-card::after{content:"";position:absolute;bottom:-140px;left:-90px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,var(--blue),transparent 64%)}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start;position:relative;z-index:2}
+.cta-grid h2{color:#fff;font-size:clamp(28px,3.6vw,42px);font-weight:800;line-height:1.15;letter-spacing:-.03em}
+.cta-grid .sub{color:var(--ink-2);margin-top:18px}
+.cta-pts{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.cta-pts li{display:flex;gap:11px;color:var(--ink);font-size:15.5px;align-items:center}
+.cta-pts li svg{width:21px;height:21px;color:var(--red-bright);flex-shrink:0}
+.form{background:var(--raised);border:1px solid var(--hair);border-radius:var(--r-lg);padding:32px;box-shadow:var(--sh-lg)}
+.form h3{font-size:21px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.02em}
+.form .fsub{font-size:14px;color:var(--muted);margin-bottom:22px}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:7px}
+.fld label .req{color:var(--red-bright)}
+.fld input,.fld select{width:100%;padding:14px 16px;border:1.5px solid var(--hair);border-radius:var(--r-sm);font-family:inherit;font-size:15px;color:var(--ink);background:var(--surface);transition:border-color .2s,box-shadow .2s}
+.fld select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238A93A3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 4px rgba(20,184,166,.15)}
+.fld input::placeholder{color:var(--muted-2)}
+.radios{display:flex;gap:10px}
+.radios label{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted);padding:13px;border:1.5px solid var(--hair);border-radius:var(--r-sm);cursor:pointer;transition:border-color .2s,color .2s,background-color .2s;margin:0}
+.radios input{display:none}
+.radios label:has(input:checked){background:var(--red-tint);border-color:var(--red);color:var(--red-bright);font-weight:700}
+.form .btn{width:100%;margin-top:8px}
+.form-note{font-size:12px;color:var(--muted-2);text-align:center;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:6px}
+.form-note svg{width:14px;height:14px}
+.form-done{text-align:center;padding:34px 10px;animation:pop .5s var(--e)}
+@keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+.form-done .di{width:76px;height:76px;border-radius:50%;background:var(--red-tint);display:grid;place-items:center;margin:0 auto 20px}
+.form-done .di svg{width:38px;height:38px;color:var(--red-bright)}
+.form-done h3{font-size:22px;color:#fff;margin-bottom:10px}
+.form-done p{font-size:15px;color:var(--muted);line-height:1.65}
+
+/* ===== FOOTER ===== */
+.footer{background:#06070A;border-top:1px solid var(--hair);color:var(--muted);padding:70px 0 36px}
+.ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:48px}
+.ft-brand .logo{margin-bottom:18px}
+.ft-brand p{font-size:14px;line-height:1.7;max-width:300px}
+.ft-col h5{color:#fff;font-size:14px;font-weight:700;margin-bottom:18px}
+.ft-col a{display:block;font-size:14px;padding:6px 0;transition:color .2s}.ft-col a:hover{color:#fff}
+.ft-bot{border-top:1px solid var(--hair);padding-top:28px;font-size:13px;line-height:1.8}
+.ft-bot .disc{color:var(--muted-2);margin-top:10px;font-size:12.5px}
+
+/* scarcity + sticky */
+.scarce{display:flex;align-items:center;gap:9px;background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.28);color:var(--red-bright);font-size:13px;font-weight:600;padding:11px 14px;border-radius:var(--r-sm);margin-bottom:18px}
+.scarce .sc-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(20,184,166,.18);flex-shrink:0;animation:pulse 1.8s infinite}
+.scarce b{color:#fff;font-weight:800;font-family:'Inter'}
+.sticky-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:90;background:rgba(8,9,12,.94);backdrop-filter:blur(14px);border-top:1px solid var(--hair);padding:12px 16px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.6);gap:10px;align-items:center}
+.sticky-cta .sc-call{display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:14px;background:var(--raised);color:#fff;flex-shrink:0;border:1px solid var(--hair)}
+.sticky-cta .sc-call svg{width:22px;height:22px}
+.sticky-cta .btn{flex:1;margin:0}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .promo-grid,.est-grid,.master-grid,.cta-grid{grid-template-columns:1fr;gap:44px}
+  .line-grid{grid-template-columns:repeat(2,1fr)}
+  .line-grid .mcard:last-child{grid-column:1 / -1;max-width:520px;margin:0 auto;width:100%}
+  .benefit-in{grid-template-columns:repeat(2,1fr)}
+  .bn:nth-child(2){border-right:none}.bn:nth-child(1),.bn:nth-child(2){border-bottom:1px solid var(--hair-2)}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .master-photo{max-width:460px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-phone{display:none}.burger{display:flex}
+  .hero .wrap{padding-top:120px}
+  .line-grid{grid-template-columns:1fr}
+  .line-grid .mcard:last-child{max-width:none}
+  .steps-row,.rv-grid{grid-template-columns:1fr}
+  .promo-card,.cta-card{padding:40px 26px}
+  .spec-strip .sp{min-width:50%;border-bottom:1px solid var(--hair-2)}
+  .spec-strip .sp:nth-child(2n){border-right:none}
+  .sec{padding:84px 0}.sec-head{margin-bottom:46px}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .sticky-cta{display:flex}body{padding-bottom:78px}
+  .footer{padding-bottom:90px}
+}
+@media(max-width:480px){
+  .wrap,.nav-in{padding:0 20px}
+  .hero-cta .btn{width:100%}
+  .benefit-in{grid-template-columns:1fr}
+  .bn{border-right:none!important;border-bottom:1px solid var(--hair-2)}
+  .ft-grid{grid-template-columns:1fr}
+  .master-stats{gap:24px}
+  .promo-card,.cta-card,.est-panel{padding-left:24px;padding-right:24px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;transform:none!important;scroll-behavior:auto!important}
+  .fi{opacity:1;transform:none}
+}
+
+/* avatar+illustration patch (papastudio) */
+.pf~img{position:relative;z-index:1}
+.rv-av{position:relative}
+.rv-av img{display:none}
+.rv-av::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.42);-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23000'%20stroke-width='1.9'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M20%2021v-2a4%204%200%200%200-4-4H8a4%204%200%200%200-4%204v2'/%3E%3Ccircle%20cx='12'%20cy='7'%20r='4'/%3E%3C/svg%3E") center/54% no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23000'%20stroke-width='1.9'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M20%2021v-2a4%204%200%200%200-4-4H8a4%204%200%200%200-4%204v2'/%3E%3Ccircle%20cx='12'%20cy='7'%20r='4'/%3E%3C/svg%3E") center/54% no-repeat}
+</style>
+</head>
+<body>
+
+<nav class="nav sc" id="nav" style="">
+  <div class="nav-in" style="">
+    <a href="#" class="logo"><span class="logo-mk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l1.5-4.5A3 3 0 019.3 6.5h5.4a3 3 0 012.8 2L19 13M5 13h14M5 13l-1 1v3.5a1 1 0 001 1h1.5a1 1 0 001-1V17m9 0v.5a1 1 0 001 1H19a1 1 0 001-1V14l-1-1" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="16" r="1.1" fill="#fff"></circle><circle cx="16" cy="16" r="1.1" fill="#fff"></circle></svg></span>이민호의<span class="eng">보험료 줄이기</span></a>
+    <ul class="nav-links">
+      <li style=""><a href="#lineup">절감 플랜</a></li>
+      <li><a href="#promo" style="">무료 진단</a></li>
+      <li style=""><a href="#estimator">보험료 계산기</a></li>
+      <li><a href="#master">전문 상담</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-r" style="">
+      <span class="nav-phone"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="eng">010-0000-0000</span></span>
+      <a href="#cta" class="btn btn-pri" style="">무료 진단</a>
+    </div>
+    <button class="burger" onclick="toggleNav()" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobnav" id="mobNav">
+  <a href="#lineup" onclick="toggleNav()">절감 플랜</a>
+  <a href="#promo" onclick="toggleNav()">무료 진단</a>
+  <a href="#estimator" onclick="toggleNav()">보험료 계산기</a>
+  <a href="#master" onclick="toggleNav()">전문 상담</a>
+  <a href="#faq" onclick="toggleNav()">FAQ</a>
+  <a href="#cta" class="btn btn-pri" onclick="toggleNav()">무료 진단 신청</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" style=""><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=80" alt="" onerror="this.remove()"></div>
+  <div class="wrap" style="">
+    <span class="hero-badge fi on"><span class="pdot"></span>무료 보험 점검 진행 중 · 이번 달 상담 우선 접수</span>
+    <h1 class="fi d1 on" style="">이민호의 보험료 줄이기<br><span class="ln2">새는 보험료부터 잡아드립니다</span></h1>
+    <p class="sub fi d2 on">가입한 보험을 한 번에 점검해 중복 보장, 불필요 특약, 갱신 부담을 찾아내고 <b>실제로 줄일 수 있는 보험료</b>를 안내합니다.</p>
+    <div class="hero-cta fi d3 on" style="">
+      <a href="#cta" class="btn btn-pri btn-lg">무료 진단 받기<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <a href="#lineup" class="btn btn-glass btn-lg">절감 플랜 보기</a>
+    </div>
+    <div class="spec-strip fi d4 on">
+      <div class="sp"><div class="v">3<span class="u">분</span></div><div class="l">간편 정보 입력</div></div>
+      <div class="sp"><div class="v">7<span class="u">개</span></div><div class="l">중복 보장 체크</div></div>
+      <div class="sp"><div class="v">0<span class="u">원</span></div><div class="l">상담 비용</div></div>
+      <div class="sp" style=""><div class="v">1:1<span class="u">분석</span></div><div class="l">맞춤 절감안</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint eng" aria-hidden="true" style="">SCROLL<svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14m-6-6l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+</section>
+
+<!-- BENEFIT BAR -->
+<section class="benefit">
+  <div class="wrap"><div class="benefit-in">
+    <div class="bn fi on">
+      <div class="bn-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.77l-6.18 3.25L7 13.14 2 8.27l6.91-1.01L12 1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg></div>
+      <h4>보험료 누수 점검</h4><p>비슷한 보장이 겹치거나 과하게 잡힌 특약을 찾아 월 납입 부담을 낮춥니다.</p>
+    </div>
+    <div class="bn fi d1 on" style="">
+      <div class="bn-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M20 12V8a2 2 0 00-2-2h-3.5l-1-2h-3l-1 2H6a2 2 0 00-2 2v9a2 2 0 002 2h6m6-3l-3 3-1.5-1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+      <h4>무료 진단</h4><p>현재 보험료, 보장 범위, 갱신 여부를 한 번에 확인해 절감 가능성을 점검합니다.</p>
+    </div>
+    <div class="bn fi d2 on">
+      <div class="bn-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l1.5-4.5A3 3 0 019.3 6.5h5.4a3 3 0 012.8 2L19 13M5 13h14M6 13v4m12-4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+      <h4>무료 상담</h4><p>전화나 온라인으로 현재 가입 내용을 확인하고 부담 없이 방향을 안내합니다.</p>
+    </div>
+    <div class="bn bn-count fi d3 on">
+      <div class="bc"><span class="num" data-count="8200">8,200</span><span class="u">건+</span></div>
+      <h4 style="margin-top:4px">누적 절감 상담</h4><p>올해 보험료 점검을 통해 낭비 항목을 확인한 누적 상담 건수입니다.</p>
+    </div>
+  </div></div>
+</section>
+
+<!-- LINEUP -->
+<section class="sec" id="lineup" style="">
+  <div class="wrap" style="">
+    <div class="sec-head fi on">
+      <span class="kicker">SAVING PLANS</span>
+      <h2 class="h2" style="">내 상황에 맞춰 고르는<br>세 가지 보험료 절감 플랜</h2>
+      <p class="sub" style="">실손, 운전자, 종합 보장까지. 현재 가입 상태를 기준으로 줄일 수 있는 항목과 유지해야 할 보장을 나눠봅니다.</p>
+    </div>
+    <div class="line-grid">
+
+      <!-- model 1 -->
+      <div class="mcard fi on" data-tint="#14B8A6" data-glow="rgba(20,184,166,.28)">
+        <div class="mcard-img">
+          <div class="ph"><svg viewBox="0 0 24 24" fill="none"><path d="M3 14l1.8-5.4A3.5 3.5 0 018.1 6h7.8a3.5 3.5 0 013.3 2.6L21 14M3 14h18M3 14v4.2a1 1 0 001 1h1.8a1 1 0 001-1V18m10.4 0v.2a1 1 0 001 1H21a1 1 0 001-1V14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80" alt="월 보험료 점검 상담 이미지" loading="lazy" onerror="this.style.opacity=0">
+          <span class="mcard-tag">BASIC</span>
+        </div>
+        <div class="mcard-body">
+          <div class="mcard-name"><span class="eng">BASIC</span><span class="kr">월 보험료 점검</span></div>
+          <div class="mcard-price">시작가 <span class="pv eng">3<span class="u">분</span></span></div>
+          <ul class="mspec">
+            <li>중복 보장 체크 <span class="sv">14.1km/L</span></li>
+            <li>제로백 <span class="sv">6.1초</span></li>
+            <li>출력 <span class="sv">300hp</span></li>
+          </ul>
+          <div class="swatch-row" data-swatches="">
+            <span class="sl">CHECK</span>
+            <button class="swatch on" style="background:#14B8A6;color:#14B8A6" data-c="#14B8A6" data-g="rgba(20,184,166,.28)" aria-label="레드"></button>
+            <button class="swatch" style="background:#1F6FEB;color:#1F6FEB" data-c="#1F6FEB" data-g="rgba(60,120,255,.32)" aria-label="블루"></button>
+            <button class="swatch" style="background:#C9CDD4;color:#C9CDD4" data-c="#C9CDD4" data-g="rgba(201,205,212,.28)" aria-label="실버"></button>
+            <button class="swatch" style="background:#23272F;color:#7A828F" data-c="#7A828F" data-g="rgba(122,130,143,.26)" aria-label="블랙"></button>
+          </div>
+          <a href="#cta" class="btn btn-ghost">이 플랜 상담 받기</a>
+        </div>
+      </div>
+
+      <!-- model 2 -->
+      <div class="mcard fi d1 on" data-tint="#14B8A6" data-glow="rgba(20,184,166,.28)">
+        <div class="mcard-img">
+          <div class="ph"><svg viewBox="0 0 24 24" fill="none"><path d="M3 13l1.6-5A3.5 3.5 0 018 5.5h8a3.5 3.5 0 013.4 2.5L21 13M3 13h18M3 13v4.5a1 1 0 001 1h2a1 1 0 001-1V18m10 0v.5a1 1 0 001 1h2a1 1 0 001-1V13M6 9h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80" alt="가족 보장 정리 상담 이미지" loading="lazy" onerror="this.style.opacity=0" style="">
+          <span class="mcard-tag">FAMILY</span>
+        </div>
+        <div class="mcard-body" style="">
+          <div class="mcard-name"><span class="eng">FAMILY</span><span class="kr" style="">가족 보장 정리</span></div>
+          <div class="mcard-price">예상 절감 <span class="pv eng">5~12<span class="u">만원/월</span></span></div>
+          <ul class="mspec" style="">
+            <li>중복 보장 체크 <span class="sv">11.8km/L</span></li>
+            <li>승차정원 <span class="sv">7인승</span></li>
+            <li>출력 <span class="sv" style="">280hp</span></li>
+          </ul>
+          <div class="swatch-row" data-swatches="" style="">
+            <span class="sl">CHECK</span>
+            <button class="swatch on" style="background:#14B8A6;color:#14B8A6" data-c="#14B8A6" data-g="rgba(20,184,166,.28)" aria-label="레드"></button>
+            <button class="swatch" style="background:#2E7D5B;color:#2E7D5B" data-c="#2E7D5B" data-g="rgba(46,125,91,.3)" aria-label="그린"></button>
+            <button class="swatch" style="background:#E8E2D4;color:#E8E2D4" data-c="#E8E2D4" data-g="rgba(232,226,212,.26)" aria-label="베이지"></button>
+            <button class="swatch" style="background:#23272F;color:#7A828F" data-c="#7A828F" data-g="rgba(122,130,143,.26)" aria-label="그레이"></button>
+          </div>
+          <a href="#cta" class="btn btn-ghost" style="">이 플랜 상담 받기</a>
+        </div>
+      </div>
+
+      <!-- model 3 -->
+      <div class="mcard fi d2 on" data-tint="#3C9EFF" data-glow="rgba(60,120,255,.34)">
+        <div class="mcard-img">
+          <div class="ph"><svg viewBox="0 0 24 24" fill="none"><path d="M3 14l1.8-5.4A3.5 3.5 0 018.1 6h7.8a3.5 3.5 0 013.3 2.6L21 14M3 14h18M3 14v4.2a1 1 0 001 1h1.8a1 1 0 001-1V18m10.4 0v.2a1 1 0 001 1H21a1 1 0 001-1V14M13 9l-2 2.5h2.4L11.5 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=900&q=80" alt="갱신 전 보험료 재설계 상담 이미지" loading="lazy" onerror="this.style.opacity=0">
+          <span class="mcard-tag">RENEWAL</span>
+        </div>
+        <div class="mcard-body">
+          <div class="mcard-name"><span class="eng">RENEWAL</span><span class="kr">갱신 전 재설계</span></div>
+          <div class="mcard-price">예상 절감 <span class="pv eng">10~20<span class="u">만원/월</span></span></div>
+          <ul class="mspec">
+            <li>1회충전 <span class="sv">478km</span></li>
+            <li>제로백 <span class="sv">5.4초</span></li>
+            <li>출력 <span class="sv">340hp</span></li>
+          </ul>
+          <div class="swatch-row" data-swatches="">
+            <span class="sl">CHECK</span>
+            <button class="swatch on" style="background:#3C9EFF;color:#3C9EFF" data-c="#3C9EFF" data-g="rgba(60,120,255,.34)" aria-label="블루"></button>
+            <button class="swatch" style="background:#14B8A6;color:#14B8A6" data-c="#14B8A6" data-g="rgba(20,184,166,.28)" aria-label="레드"></button>
+            <button class="swatch" style="background:#F4F6FA;color:#F4F6FA" data-c="#F4F6FA" data-g="rgba(244,246,250,.26)" aria-label="화이트"></button>
+            <button class="swatch" style="background:#23272F;color:#7A828F" data-c="#7A828F" data-g="rgba(122,130,143,.26)" aria-label="그레이"></button>
+          </div>
+          <a href="#cta" class="btn btn-ghost">이 플랜 상담 받기</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROMO -->
+<section class="sec promo" id="promo" style="">
+  <div class="wrap" style="">
+    <div class="promo-card fi on" style="">
+      <div class="promo-grid">
+        <div class="promo-l" style="">
+          <span class="dchip"><svg viewBox="0 0 24 24" fill="none" style="width:15px;height:15px"><path d="M12 2v20m6-16H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>무료 진단 · 마감 <span class="eng">D-3</span></span>
+          <h2 style="">보험료를 낮추는<br>세 가지 핵심 점검</h2>
+          <p>보험료를 무조건 낮추기보다, 필요한 보장은 유지하고 낭비되는 납입만 줄이는 방향으로 확인합니다.</p>
+          <div class="magnet" style="">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.4L12 16.8 5.7 21.3 8 13.9 2 9.4h7.6L12 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+            <p style="">현재 가입 내역을 알려주시면 <b>중복 보장과 과한 특약, 갱신 위험</b>을 1:1로 정리해 드립니다. 상담은 무료입니다.</p>
+          </div>
+        </div>
+        <div class="promo-cards" style="">
+          <div class="pc" style="">
+            <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 7l2-3h14l2 3M3 7v11a2 2 0 002 2h14a2 2 0 002-2V7M9 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <div><h4>중복 보장 정리<span class="val eng">핵심</span></h4><p>실손·진단비·입원비처럼 겹치기 쉬운 보장을 먼저 확인</p></div>
+          </div>
+          <div class="pc" style="">
+            <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22M5 5h10a4 4 0 010 8H7a4 4 0 000 8h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <div><h4>불필요 특약 점검<span class="val eng">월 납입</span></h4><p>사용 가능성이 낮거나 과하게 잡힌 특약을 분리</p></div>
+          </div>
+          <div class="pc" style="">
+            <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V8l8-5 8 5v13M4 21h16M9 21v-6h6v6M9 11h.01M15 11h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <div><h4>갱신 부담 관리<span class="val eng">장기</span></h4><p>갱신형·비갱신형 구조를 나눠 장기 납입 부담 확인</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATOR -->
+<section class="sec est" id="estimator" style="">
+  <div class="wrap" style="">
+    <div class="est-grid" style="">
+      <div class="est-l fi on" style="">
+        <span class="kicker">PREMIUM CHECK</span>
+        <h2 class="h2" style="">얼마나 줄일 수 있을지,<br>간단히 가늠해보세요</h2>
+        <p class="sub" style="">현재 월 보험료와 가입 유형을 고르면 예상 절감 범위를 바로 계산합니다. 정확한 결과는 상담 후 가입 내역 기준으로 안내합니다.</p>
+        <ul class="est-feats" style="">
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>실손·운전자·종합보험을 한 화면에서 점검</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>중복 보장과 과한 특약을 반영한 예상 절감액</li>
+          <li style=""><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>방문·가입 부담 없이 숫자만 먼저 확인</li>
+        </ul>
+      </div>
+      <div class="est-panel fi d1 on" style="">
+        <div class="est-panel-h" style=""><svg viewBox="0 0 24 24" fill="none"><path d="M9 7h6M9 11h6m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>예상 보험료 절감 계산기</div>
+        <div class="efld" style="">
+          <label style="">현재 보험료</label>
+          <select id="estModel" style="">
+            <option value="8">월 10만원 미만</option>
+            <option value="15">월 10~20만원</option>
+            <option value="25">월 20만원 이상</option>
+          </select>
+        </div>
+        <div class="efld" style="">
+          <label style="">가입 상태</label>
+          <select id="estTrim" style="">
+            <option value="1">단독 가입</option>
+            <option value="1.08">2~3개 보험 가입</option>
+            <option value="1.16">4개 이상 가입</option>
+          </select>
+        </div>
+        <div class="efld" style="">
+          <label style="">점검 방식</label>
+          <div class="eseg" id="estPay" style="">
+            <button type="button" class="on" data-pay="lease" style="">빠른 점검</button>
+            <button type="button" data-pay="loan" style="">정밀 점검</button>
+          </div>
+        </div>
+        <div class="eout" style="">
+          <div class="ot" style="">점검 후 예상 절감</div>
+          <div class="orow">
+            <div class="ob hi">
+              <div class="ol" id="estMainLabel">예상 월 절감액</div>
+              <div class="ov"><span class="num" id="estMonthly" style="">49</span><small>만원/월</small></div>
+            </div>
+            <div class="ob">
+              <div class="ol" style="">예상 조정 후 보험료</div>
+              <div class="ov" style=""><span class="num" id="estTotal" style="">2,989</span><small>만원</small></div>
+            </div>
+          </div>
+          <p class="enote" style="">※ 단순 예시값이며 실제 절감액은 가입 내역과 심사 조건에 따라 달라집니다</p>
+        </div>
+        <a href="#cta" class="btn btn-pri" style="width: 100%; margin-top: 20px;">이 조건으로 무료 점검 받기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASTER -->
+<section class="sec master" id="master" style="">
+  <div class="wrap master-grid" style="">
+    <div class="master-photo fi on" style="">
+      <div class="pf"><svg viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" stroke-width="1.5"></path></svg></div>
+      <img src="https://zncapvkihoofezxfehoc.supabase.co/storage/v1/object/public/site-images/4aac6408-96fc-48b7-8535-6887383261d4/1782712678031-car-person-01.webp" alt="이민호의 보험료 줄이기 상담자" loading="lazy" style="object-fit: cover; width: 100%; height: 100%;">
+      <div class="master-tag"><div class="nm">이민호 상담사</div><div class="ro">보험료 절감 상담 · 12년차</div></div>
+    </div>
+    <div class="fi d1 on" style="">
+      <span class="kicker" style="">YOUR INSURANCE PARTNER</span>
+      <h2 class="h2" style="margin-top: 16px;">보험을 더 넣기보다,<br>보험료 구조를 정리합니다</h2>
+      <div class="master-stats" style="">
+        <div class="ms" style=""><div class="v"><span class="num" data-count="2400" style="">2,400</span><span class="u" style="">건+</span></div><div class="l" style="">누적 상담</div></div>
+        <div class="ms"><div class="v" style=""><span class="num" data-count="12" style="">12</span><span class="u" style="">년</span></div><div class="l" style="">보험 상담 경력</div></div>
+        <div class="ms" style=""><div class="v"><span class="num" data-count="98" style="">98</span><span class="u">%</span></div><div class="l" style="">상담 만족 비율</div></div>
+      </div>
+      <ul class="master-cred" style="">
+        <li style=""><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>실손·운전자·건강보험 보장 구조 비교</li>
+        <li style=""><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>빠른 점검·정밀 점검까지 상황별 절감안 제시</li>
+        <li style=""><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>상담 후 유지·조정·해지 판단까지 1:1 안내</li>
+      </ul>
+      <p class="master-quote" style="margin-top:26px">"보험료는 줄이되 보장은 비우지 않는 것이 핵심입니다. 필요한 보장은 지키고 낭비되는 납입부터 정리해 드립니다."</p>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="sec steps" id="steps">
+  <div class="wrap">
+    <div class="sec-head center fi">
+      <span class="kicker" style="justify-content:center;display:inline-flex">PROCESS</span>
+      <h2 class="h2">보험료 점검, 3단계면 끝</h2>
+      <p class="sub">가입 권유보다 현재 상태 확인이 먼저입니다. 신청부터 절감안 안내까지 이민호가 직접 챙깁니다.</p>
+    </div>
+    <div class="steps-row">
+      <div class="stp fi"><div class="si eng">01</div><div class="sic"><svg viewBox="0 0 24 24" fill="none"><path d="M9 7h6M9 11h6m-6 4h3M6 3h12a1 1 0 011 1v16a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>1분 신청</h3><p>현재 월 보험료와 연락처만 남기면 끝. 가입 권유나 방문 압박은 없습니다.</p></div>
+      <div class="stp fi d1"><div class="si eng">02</div><div class="sic"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>상담 연결</h3><p>이민호가 연락해 편한 시간에 현재 가입 내역을 확인합니다.</p></div>
+      <div class="stp fi d2"><div class="si eng">03</div><div class="sic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l1.5-4.5A3 3 0 019.3 6.5h5.4a3 3 0 012.8 2L19 13M5 13h14M6 13v4m12-4v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>절감안 확인</h3><p>유지할 보장과 줄일 항목을 나눠 월 보험료 절감안을 확인합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-head center fi">
+      <span class="kicker" style="display:inline-flex">REAL REVIEWS</span>
+      <h2 class="h2">보험료를 점검한 분들</h2>
+    </div>
+    <div class="rv-grid">
+      <div class="rv fi">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg></div>
+        <p class="rv-txt">"여러 보험을 따로 가입해 둔 상태라 복잡했는데, 어떤 보장이 겹치고 어디서 보험료가 새는지 한눈에 정리해주셔서 좋았습니다."</p>
+        <span class="rv-buy">월 보험료 점검 · 6월 상담</span>
+        <div class="rv-u"><div class="rv-av"><img src="assets/car-dealer/profile-1.webp" alt="" loading="lazy" onerror="this.style.opacity=0"></div><div><div class="nm">정우성 님</div><div class="me">37세 · 서울 송파구</div></div></div>
+      </div>
+      <div class="rv fi d1">
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"></path></svg></div>
+        <p class="rv-txt">"갱신형 보험료가 계속 올라 걱정이었는데 유지할 보장과 조정할 특약을 나눠 설명해줘서 부담을 줄이는 데 도움이 됐습니다."</p>
+        <span class="rv-buy">월 20만원 이상 · 갱신 전 점검</span>
+        <div class="rv-u"><div class="rv-av"><img src="assets/car-dealer/profile-2.webp" alt="" loading="lazy" onerror="this.style.opacity=0"></div><div><div class="nm">김하늘 님</div><div class="me">42세 · 경기 성남시</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec steps" id="faq" style="border-bottom:1px solid var(--hair)">
+  <div class="wrap">
+    <div class="sec-head center fi">
+      <span class="kicker" style="display:inline-flex">FAQ</span>
+      <h2 class="h2">상담 전, 가장 많이 묻는 질문</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="fq fi"><button class="fq-q" onclick="toggleFq(this)" aria-expanded="false">상담만 받고 가입하지 않아도 되나요?<span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="fq-a"><div class="fq-a-in">네, 전혀 부담 없습니다. 보험료 점검과 절감 방향 안내는 무료이며, 가입이나 변경 여부는 100% 고객님의 선택입니다.</div></div></div>
+      <div class="fq fi"><button class="fq-q" onclick="toggleFq(this)" aria-expanded="false">보험료 점검도 정말 무료인가요?<span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="fq-a"><div class="fq-a-in">네, 기본 점검은 무료이며 비용이 청구되지 않습니다. 전화나 온라인 상담으로 편하게 진행할 수 있습니다.</div></div></div>
+      <div class="fq fi"><button class="fq-q" onclick="toggleFq(this)" aria-expanded="false">절감 가능 금액은 어떻게 확인하나요?<span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="fq-a"><div class="fq-a-in">현재 가입 내역과 월 보험료를 기준으로 중복 보장과 불필요 특약을 확인한 뒤 1:1로 안내합니다.</div></div></div>
+      <div class="fq fi"><button class="fq-q" onclick="toggleFq(this)" aria-expanded="false">기존 보험은 바로 해지해야 하나요?<span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="fq-a"><div class="fq-a-in">아닙니다. 보장 공백과 손해가 생기지 않도록 유지할 보험과 조정할 보험을 먼저 나눠 확인합니다.</div></div></div>
+      <div class="fq fi"><button class="fq-q" onclick="toggleFq(this)" aria-expanded="false">상담은 얼마나 걸리나요?<span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="fq-a"><div class="fq-a-in">기본 상담은 보통 10~20분 정도이며, 가입 내역이 많으면 추가 확인 시간이 필요할 수 있습니다.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec" id="cta">
+  <div class="wrap">
+    <div class="cta-card">
+      <div class="cta-grid">
+        <div class="fi">
+          <h2>내 보험료,<br>지금 줄여보세요</h2>
+          <p class="sub">1분이면 신청 끝. 현재 보험료와 연락처를 남기면 이민호가 직접 연락드립니다.</p>
+          <ul class="cta-pts">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>무료 점검 · 온라인 상담 · 방문 부담 없음</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>중복 보장과 불필요 특약 점검</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>실손·운전자·건강보험 구조 비교</li>
+          </ul>
+        </div>
+        <div class="fi d1">
+          <form class="form" id="lead-form" onsubmit="return submitForm(event)">
+            <div id="form-body">
+              <h3>무료 진단·보장 점검</h3>
+              <p class="fsub">아래 정보만 남기시면 이민호가 연락드립니다.</p>
+              <div class="scarce"><span class="sc-dot"></span>무료 점검 우선 접수 · 오늘 상담 <b>14</b>건 접수</div>
+              <div class="fld"><label>현재 보험료</label>
+                <select name="model"><option value="">선택해주세요</option><option>월 10만원 미만</option><option>월 10~20만원</option><option>월 20만원 이상</option><option>잘 모르겠어요</option></select>
+              </div>
+              <div class="fld"><label>상담 가능 지역</label>
+                <select name="region"><option value="">선택해주세요</option><option>서울</option><option>경기·인천</option><option>충청·대전</option><option>경상·부산·대구</option><option>전라·광주</option><option>강원</option><option>제주</option></select>
+              </div>
+              <div class="fld"><label>이름 <span class="req">*</span></label><input type="text" name="name" placeholder="홍길동" autocomplete="name"></div>
+              <div class="fld"><label>연락처 <span class="req">*</span></label><input type="tel" name="phone" placeholder="010-0000-0000" autocomplete="tel" inputmode="numeric"></div>
+              <div class="fld"><label>희망하는 것 <span class="req">*</span></label>
+                <div class="radios">
+                  <label><input type="radio" name="intent" value="보험료 줄이기" checked=""><span>보험료 줄이기</span></label>
+                  <label><input type="radio" name="intent" value="보장 점검"><span>보장 점검</span></label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-pri">신청하고 절감안 받기<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <p class="form-note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>개인정보는 상담 목적 외 사용되지 않습니다</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a href="#" class="logo"><span class="logo-mk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l1.5-4.5A3 3 0 019.3 6.5h5.4a3 3 0 012.8 2L19 13M5 13h14M5 13l-1 1v3.5a1 1 0 001 1h1.5a1 1 0 001-1V17m9 0v.5a1 1 0 001 1H19a1 1 0 001-1V14l-1-1" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="16" r="1.1" fill="#fff"></circle><circle cx="16" cy="16" r="1.1" fill="#fff"></circle></svg></span>이민호의<span class="eng">보험료 줄이기</span></a>
+        <p>현재 보험료를 점검하고 필요한 보장은 지키면서 낭비되는 납입을 줄이도록 돕는 보험료 절감 상담 페이지입니다.</p>
+      </div>
+      <div class="ft-col"><h5>현재 보험료</h5><a href="#lineup">월 10만원 미만</a><a href="#lineup">월 10~20만원</a><a href="#lineup">월 20만원 이상</a><a href="#estimator">보험료 계산기</a></div>
+      <div class="ft-col"><h5>서비스</h5><a href="#promo">무료 진단</a><a href="#steps">무료 상담</a><a href="#master">상담자 소개</a><a href="#faq">자주 묻는 질문</a></div>
+      <div class="ft-col"><h5>상담센터</h5><a href="tel:01000000000"><span class="eng">010-0000-0000</span></a><a href="#">평일 09:00–20:00</a><a href="#">주말 10:00–18:00</a><a href="#cta">보험료 점검</a></div>
+    </div>
+    <div class="ft-bot">
+      <p>이민호의 보험료 줄이기 · 대표 이민호 · 보험료 절감 상담 홈페이지</p>
+      <p>상담 가능 지역 전국 · 상담센터 <span class="eng">010-0000-0000</span> · 운영시간 평일 09:00~20:00</p>
+      <p class="disc">본 사이트의 예상 절감액은 예시이며 실제 결과는 가입 내역과 심사 조건에 따라 달라질 수 있습니다.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <a href="tel:01000000000" class="sc-call" aria-label="전화 상담"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  <a href="#cta" class="btn btn-pri">무료 진단·보장 점검</a>
+</div>
+
+<script>
+// fade-in
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+// nav scroll
+const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>40),{passive:true});
+// burger
+function toggleNav(){document.getElementById('mobNav').classList.toggle('open')}
+// faq accordion
+function toggleFq(btn){const it=btn.closest('.fq');const open=it.classList.contains('open');document.querySelectorAll('.fq').forEach(f=>{f.classList.remove('open');const a=f.querySelector('.fq-a');a.style.maxHeight=null;f.querySelector('.fq-q').setAttribute('aria-expanded','false')});if(!open){it.classList.add('open');const a=it.querySelector('.fq-a');a.style.maxHeight=a.scrollHeight+'px';btn.setAttribute('aria-expanded','true')}}
+// smooth anchor
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length>1){const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}}));
+// count-up
+function countUp(el){const tgt=+el.dataset.count;let c=0,s=Math.max(1,tgt/55);const t=setInterval(()=>{c+=s;if(c>=tgt){c=tgt;clearInterval(t)}el.textContent=Math.floor(c).toLocaleString()},16)}
+const cObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){countUp(e.target);cObs.unobserve(e.target)}}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cObs.observe(el));
+
+// CHECK SWATCHES — retint model card accent + price color
+document.querySelectorAll('[data-swatches]').forEach(row=>{
+  const card=row.closest('.mcard');
+  row.querySelectorAll('.swatch').forEach(sw=>{
+    sw.addEventListener('click',()=>{
+      row.querySelectorAll('.swatch').forEach(s=>s.classList.remove('on'));
+      sw.classList.add('on');
+      card.style.setProperty('--tint',sw.dataset.c);
+      card.style.setProperty('--tint-glow',sw.dataset.g);
+    });
+  });
+});
+
+// ESTIMATOR — premium/type/check → live 예상 절감액 + 조정 후 보험료
+const estModel=document.getElementById('estModel'),estTrim=document.getElementById('estTrim'),
+      estMonthly=document.getElementById('estMonthly'),estTotal=document.getElementById('estTotal'),
+      estMainLabel=document.getElementById('estMainLabel');
+let payMode='lease';
+document.querySelectorAll('#estPay button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#estPay button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');payMode=b.dataset.pay;calcEst();
+}));
+function calcEst(){
+  const base=+estModel.value;               // 현재 월 보험료(만원)
+  const trim=+estTrim.value;
+  const sticker=base*trim;
+  const promo=Math.max(1, Math.round(sticker*0.82));     // 점검 후 18% 절감 가정
+  estTotal.textContent=promo.toLocaleString();
+  let monthly;
+  if(payMode==='lease'){
+    estMainLabel.textContent='예상 월 절감액';
+    monthly=Math.max(1, Math.round(sticker-promo));
+  }else{
+    estMainLabel.textContent='예상 월 절감액';
+    monthly=Math.max(1, Math.round((sticker-promo)*1.18));
+  }
+  estMonthly.textContent=monthly.toLocaleString();
+}
+estModel.addEventListener('change',calcEst);
+estTrim.addEventListener('change',calcEst);
+calcEst();
+
+// FORM demo
+function submitForm(e){
+  e.preventDefault();
+  const f=e.target,name=f.name.value.trim(),phone=f.phone.value.trim();
+  if(!name||!phone){alert('이름과 연락처를 입력해주세요.');return false}
+  document.getElementById('form-body').innerHTML='<div class="form-done"><div class="di"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>신청이 접수되었습니다</h3><p>'+name+'님, 보험료 점검 신청이 접수되었습니다.<br>이민호가 곧 연락드립니다.</p></div>';
+  return false;
+}
+</script>
+
+
+</body></html>
