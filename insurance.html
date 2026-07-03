@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -423,7 +423,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
     </div>
     <div class="fi d2">
       <div class="calc">
-        <div class="calc-top">?ㅼ떆媛??덇컧 ?쒕??덉씠??/div>
+        <div class="calc-top">실시간 절감 시뮬레이션</div>
         <div class="calc-h"><svg viewBox="0 0 24 24" fill="none"><path d="M9 7h6M9 11h6m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>내 보험료 절감액 계산기</div>
         <div class="crow">
           <div class="lab"><span>현재 월 납입 보험료</span><span class="v"><span class="num" id="curVal">22</span>만원</span></div>
@@ -439,7 +439,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;bac
           </div>
         </div>
         <div class="cout">
-          <div class="ot">?덉긽 ???덇컧??/div>
+          <div class="ot">예상 월 절감액</div>
           <div class="ov"><span class="num" id="saveVal">50,600</span><small>원</small></div>
           <div class="cbars">
             <div class="cbar now"><span class="cl">현재</span><div class="ct"><div class="cf" style="width:100%"></div></div></div>
@@ -745,11 +745,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 function countUp(el){const tgt=+el.dataset.count;let c=0,s=Math.max(1,tgt/55);const t=setInterval(()=>{c+=s;if(c>=tgt){c=tgt;clearInterval(t)}el.textContent=Math.floor(c).toLocaleString()},16)}
 const cObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){countUp(e.target);cObs.unobserve(e.target)}}),{threshold:.6});
 document.querySelectorAll('[data-count]').forEach(el=>cObs.observe(el));
-const premium=document.getElementById('premium'),curVal=document.getElementById('curVal'),saveVal=document.getElementById('saveVal'),barAft=document.getElementById('barAft');
+const premium=document.getElementById('premium'),curVal=document.getElementById('curVal'),saveVal=document.getElementById('saveVal'),barAft=document.getElementById('barAft'),ageChips=document.getElementById('ageChips');
 let rate=0.23;
-function calc(){const p=+premium.value;curVal.textContent=p;saveVal.textContent=Math.round(p*10000*rate).toLocaleString();barAft.style.width=Math.round((1-rate)*100)+'%'}
-premium.addEventListener('input',calc);
-document.querySelectorAll('#ageChips .chip').forEach(ch=>ch.addEventListener('click',()=>{document.querySelectorAll('#ageChips .chip').forEach(c=>c.classList.remove('on'));ch.classList.add('on');rate=+ch.dataset.r;calc()}));
+function calc(){if(!premium||!curVal||!saveVal||!barAft)return;const p=+premium.value;const save=Math.round(p*10000*rate);curVal.textContent=p.toLocaleString();saveVal.textContent=save.toLocaleString();barAft.style.width=Math.max(8,Math.round((1-rate)*100))+'%'}
+if(premium)premium.addEventListener('input',calc);
+if(ageChips)ageChips.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{ageChips.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));ch.classList.add('on');rate=+ch.dataset.r;calc()}));
 calc();
 function submitForm(e){e.preventDefault();const f=e.target,name=f.name.value.trim(),phone=f.phone.value.trim();if(!name||!phone){alert('이름과 연락처를 입력해주세요.');return false}
 document.getElementById('form-body').innerHTML='<div class="form-done"><div class="di"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>신청이 접수되었습니다</h3><p>'+name+'님, 24시간 내 담당 설계사가<br>연락드리겠습니다. 감사합니다.</p></div>';return false}
